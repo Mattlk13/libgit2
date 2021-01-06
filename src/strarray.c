@@ -13,7 +13,8 @@ int git_strarray_copy(git_strarray *tgt, const git_strarray *src)
 {
 	size_t i;
 
-	assert(tgt && src);
+	GIT_ASSERT_ARG(tgt);
+	GIT_ASSERT_ARG(src);
 
 	memset(tgt, 0, sizeof(*tgt));
 
@@ -55,7 +56,9 @@ void git_strarray_dispose(git_strarray *array)
 	memset(array, 0, sizeof(*array));
 }
 
+#ifndef GIT_DEPRECATE_HARD
 void git_strarray_free(git_strarray *array)
 {
 	git_strarray_dispose(array);
 }
+#endif
